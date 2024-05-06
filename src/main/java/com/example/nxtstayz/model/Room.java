@@ -44,7 +44,7 @@ public class Room {
     }
 
     public void setRoomType(String type) {
-        this.type type;
+        this.type = type;
     }
 
     public double getPrice() {

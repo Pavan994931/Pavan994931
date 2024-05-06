@@ -26,10 +26,10 @@ public class HotelJpaService implements HotelRepository {
     @Override
     public Hotel getHotelById(int hotelId) {
         try {
-            Hotel hotel hotelJpaRepository.findById(hotelId).get();
+            Hotel hotel = hotelJpaRepository.findById(hotelId).get();
             return hotel;
-        }catch (Exception e) {
-            throw new ResponseStatusException (HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -40,9 +40,9 @@ public class HotelJpaService implements HotelRepository {
     }
 
     @Override
-    public Hotel updateHotel(int hotelId, Hotel hotel){
+    public Hotel updateHotel(int hotelId, Hotel hotel) {
         try {
-            Hotel newHotel hotelJpaRepository.findById(hotelId).get();
+            Hotel newHotel = hotelJpaRepository.findById(hotelId).get();
             if (hotel.getHotelName() != null) {
                 newHotel.setHotelName(hotel.getHotelName());
             }
@@ -50,14 +50,14 @@ public class HotelJpaService implements HotelRepository {
                 newHotel.setLocation(hotel.getLocation());
             }
             if (hotel.getRating() != 0) {
-                newHotel.setRating (hotel.getRating());
+                newHotel.setRating(hotel.getRating());
             }
             hotelJpaRepository.save(newHotel);
             return newHotel;
-        }catch (Exception e) {
-            throw new ResponseStatusException (HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        
+
     }
 
     @Override

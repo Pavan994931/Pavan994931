@@ -73,4 +73,25 @@ public class RoomJpaService implements RoomRepository {
         }
     }
 
+    @Override
+    public void deleteRoom(int roomId) {
+        try {
+            roomJpaRepository.deleteById(roomId);
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public Hotel getRoomHotel(int roomId) {
+        try {
+            Room room = roomJpaRepository.findById(roomId).get();
+            return room.getHotel();
+        }catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }
